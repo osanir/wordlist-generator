@@ -2,16 +2,16 @@
 Format:
 ./brtwl word1 word2 word3 ...
 */
-
-
 #include <stdio.h>
 #include <math.h>
 
 int main(int argc, char *argv[]) {
+    FILE *dosya;
     int num = argc-1, mod, holder;
     int array[num];	// use dynamic memory
-    int pow_num = pow(num, num);
+    double pow_num = pow(num, num);
     holder = num;
+    dosya = fopen("onur.txt", "w");
     int i,j;
     for(j=0; j<pow_num; j++){
     printf("%d:\t", j);
@@ -22,16 +22,17 @@ int main(int argc, char *argv[]) {
             array[i] = mod;
             holder = holder / num;
         }
-        for(i=0; i<num; i++){
+        for(i=num-1; i>=0; i--){
+            fprintf(dosya,"%s", argv[array[i]+1]);
             printf("%s", argv[array[i]+1]);
         }
+    fprintf(dosya,"\n");
     printf("\n");
     }
+    fclose(dosya);
     return 0;
 }
-
 /*
 Change: dyn mem
 Add: all possibilities
-Add: File stream, create a file including all possibilities
 */
